@@ -8,11 +8,11 @@ DISPLAY = pi3d.Display.create(x=150, y=150)
 shader = pi3d.Shader("uv_flat")
 shader2 = pi3d.Shader("uv_flat_color")
 CAMERA = pi3d.Camera(is_3d=False)
-sprite = pi3d.ImageSprite("textures/lenna.png", shader, w=150.0, h=150.0, z=5.0)
-sprite2 = pi3d.ImageSprite(pi3d.Texture("textures/swirl.png", i_format=pi3d.constants.GL_ALPHA), shader2, w=150.0, h=150.0, z=5.0)
-sprite3 = pi3d.ImageSprite("textures/lenna_rgb.png", shader, w=150.0, h=150.0, z=5.0)
+sprite = pi3d.ImageSprite("textures/lenna_l.png", shader, w=150.0, h=150.0, z=5.0)
+sprite2 = pi3d.ImageSprite("textures/lenna_rgb.png", shader, w=150.0, h=150.0, z=5.0)
+sprite3 = pi3d.ImageSprite(pi3d.Texture("textures/lenna_l.png", i_format=pi3d.constants.GL_ALPHA), shader2, w=150.0, h=150.0, z=5.0)
 sprite4 = pi3d.ImageSprite("textures/lenna_rgba.png", shader, w=150.0, h=150.0, z=5.0)
-sprite5 = pi3d.ImageSprite("textures/swirl.png", shader, w=150.0, h=150.0, z=5.0)
+sprite5 = pi3d.ImageSprite("textures/lenna_la.png", shader, w=150.0, h=150.0, z=5.0)
 sprites=[sprite, sprite2, sprite3, sprite4, sprite5]
 mykeys = pi3d.Keyboard()
 xloc = 100.0
@@ -24,14 +24,14 @@ colors=[(1, 0, 0), (0, 1, 0), (0, 0, 1), (0.5, 0.5, 0), (0, 0.5, 0.5)]
 while DISPLAY.loop_running():
   for s in sprites:
     s.draw()
-    s.rotateIncZ(1)
+    #s.rotateIncZ(1)
 
-  sprite.position(xloc, yloc, 3.0)
-  sprite2.position(-xloc, -yloc, 4.0)
-  sprite3.position(xloc, -yloc, 5.0)
-  sprite4.position(-xloc, yloc, 6.0)
-  sprite5.position(xloc*0.5, yloc*0.5, 7.0)
-  sprite2.set_material(colors[color%len(colors)])
+  sprite.position(xloc, yloc, 9)
+  sprite2.position(-xloc, -yloc, 8)
+  sprite3.position(xloc, -yloc, 7)
+  sprite4.position(-xloc, yloc, 6)
+  sprite5.position(xloc*0.5, yloc*0.5, 5)
+  sprite3.set_material(colors[color%len(colors)])
   if xloc > 300.0:
     dx = -2.1
     color+=1
