@@ -10,6 +10,8 @@ import demo
 import pi3d
 
 DISPLAY = pi3d.Display.create(x=150, y=150)
+DISPLAY.set_background(0.9, 0.9, 0.9, 0)
+
 flatsh = pi3d.Shader("uv_flat")
 shader = pi3d.Shader("uv_bump")
 CAMERA = pi3d.Camera()
@@ -25,9 +27,14 @@ It enables both 3D and 2D
 rendering and aims to provide
 a host of exciting commands.'''
 
-str1 = pi3d.FixedString('fonts/NotoSans-Regular.ttf', mytext, font_size=32, background_color=(200,140,20,235),
-          camera=CAMERA2D, shader=flatsh, f_type='SMOOTH')
+str1 = pi3d.FixedString('fonts/NotoSans-Regular.ttf', mytext, font_size=32, background_color=None,
+          camera=CAMERA2D, shader=flatsh)
 str1.sprite.positionX(-300) #NB note Shape methods act on FixedString.sprite
+
+str3 = pi3d.FixedString('fonts/NotoSans-Regular.ttf', mytext, font_size=32, background_color=None, shadow_radius=2,
+          camera=CAMERA2D, shader=flatsh)
+str3.sprite.positionX(000) #NB note Shape methods act on FixedString.sprite
+str3.sprite.positionZ(2)
 
 str2 = pi3d.FixedString('fonts/NotoSerif-Regular.ttf', mytext, font_size=24, f_type='BUMP')
 mycuboid = pi3d.Cuboid(camera=CAMERA, z=2, x=0.5)
@@ -40,6 +47,7 @@ mycuboid.buf[0].unib[7] = str2.sprite.buf[0].unib[7]
 mykeys = pi3d.Keyboard()
 while DISPLAY.loop_running():
   str1.draw()
+  str3.draw()
   mycuboid.draw()
   mycuboid.rotateIncZ(0.05)
   mycuboid.rotateIncY(0.13)
